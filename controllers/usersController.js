@@ -9,6 +9,12 @@ const getUsers = async (req, res) => {
   res.json({ users: await User.find() });
 };
 
+const getUsersBySearchKey = async (req, res) => {
+  const { searchKey } = req.params;
+  const users = await User.find({ email: { $regex: searchKey } });
+  res.status(200).json({ users });
+};
+
 const signUp = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -111,6 +117,9 @@ const login = async (req, res, next) => {
     });
 };
 
-exports.getUsers = getUsers;
-exports.signUp = signUp;
-exports.login = login;
+module.exports = {
+  getUsers,
+  getUsersBySearchKey,
+  signUp,
+  login,
+};

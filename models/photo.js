@@ -20,6 +20,12 @@ const photoSchema = new Schema({
       ref: "albums",
     },
   ],
+  sharedTo: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
   author: {
     id: {
       type: String,

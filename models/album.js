@@ -16,6 +16,16 @@ const albumSchema = new Schema({
       required: true,
     },
   },
+  createdAt: {
+    type: String,
+    required: true,
+  },
+  sharedTo: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Album", albumSchema);
